@@ -2,18 +2,18 @@ package ru.javamentor.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import ru.javamentor.model.User;
+import ru.javamentor.service.UserService;
 import ru.javamentor.service.UserServiceImpl;
 
 @Controller
 @RequestMapping("/users")
 public class UsersController {
 
-    UserServiceImpl userService;
+    private UserService userService;
 
-    UsersController(UserServiceImpl userService) {
+    UsersController(UserService userService) {
         this.userService = userService;
     }
 
@@ -22,12 +22,6 @@ public class UsersController {
         model.addAttribute("users", userService.getListUsers());
         return "users";
     }
-
-//    @GetMapping("/{id}")
-//    public String printUser(@PathVariable("id") int id, ModelMap model) {
-//        model.addAttribute("user", userService.getUser(id));
-//        return "user";
-//    }
 
     @GetMapping("/new")
     public String addUser(ModelMap model) {

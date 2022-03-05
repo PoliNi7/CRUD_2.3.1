@@ -2,15 +2,16 @@ package ru.javamentor.Util;
 
 import org.springframework.stereotype.Component;
 import ru.javamentor.model.User;
+import ru.javamentor.service.UserService;
 import ru.javamentor.service.UserServiceImpl;
 
 import javax.annotation.PostConstruct;
 
 @Component
 public class StartInit {
-    UserServiceImpl userService;
+    private UserService userService;
 
-    public StartInit(UserServiceImpl userService) {
+    public StartInit(UserService userService) {
         this.userService = userService;
     }
 

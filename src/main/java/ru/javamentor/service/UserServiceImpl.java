@@ -4,36 +4,43 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.javamentor.dao.UserDao;
 import ru.javamentor.model.User;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
 @Service
-public class UserServiceImpl {
+public class UserServiceImpl implements UserService{
 
-    UserDao userDao;
+    private UserDao userDao;
 
     public UserServiceImpl(UserDao userDao) {
         this.userDao = userDao;
     }
 
+    @Override
     public List<User> getListUsers(){
         return userDao.getListUsers();
     }
 
+    @Override
     public User getUser(long id) {
         return userDao.getUser(id);
     }
+
     @Transactional
+    @Override
     public void addUser(User user){
         userDao.addUser(user);
     }
+
     @Transactional
+    @Override
     public void updateUser(User newUser){
         userDao.updateUser(newUser);
     }
+
     @Transactional
-    public void deleteUser(Long id){
+    @Override
+    public void deleteUser(long id){
         userDao.deleteUser(id);
     }
 }
